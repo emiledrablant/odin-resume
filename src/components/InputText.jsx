@@ -1,9 +1,9 @@
 
-function Input({name, value}) {
+function InputText({name, value}) {
     return(<>
     {name}:{' '}
     <input type="text" value={value} />
     </>)
 }
 
-export default Input
+export default InputText

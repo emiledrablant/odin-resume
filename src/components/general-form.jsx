@@ -1,6 +1,6 @@
 
 import '../styles/result.css'
-import Input from './Input';
+import Input from './InputText';
 
 function GeneralForm({onValidation}) {
     const userInfos = { name: "temp", email: "XXX", phone: "YYY", location: "ZZZ"};
