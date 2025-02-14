@@ -1,15 +1,18 @@
 
 import '../styles/result.css'
+import Input from './Input';
 
 function GeneralForm({onValidation}) {
     const userInfos = { name: "temp", email: "XXX", phone: "YYY", location: "ZZZ"};
 
-    return(<>
+    return(
     <div id="container">
-        <p>aaa</p>
+        <h2>General informations</h2>
+        <br />
+        <Input name="Full name" value="testo" />
         <button onClick={() => {onValidation(userInfos)}}>Confirm</button>
     </div>
-    </>)
+    )
 }
 
 export default GeneralForm

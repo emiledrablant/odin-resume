@@ -3,7 +3,7 @@ import '../styles/result.css'
 
 
 function Result({mainInfos}) {
-    return(<>
+    return(
     <div id="container">
         <div id="header">
             <h1>{mainInfos.name}</h1>
@@ -14,7 +14,7 @@ function Result({mainInfos}) {
             </div>
         </div>
     </div>
-    </>)
+    )
 }
 
 export default Result
