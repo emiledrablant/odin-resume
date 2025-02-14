@@ -11,9 +11,13 @@ function App() {
     phone:"+32 788 411 255",
     location:"Ontario, Canada"});
 
+  function handleMainInfosChange(infos) {
+    setMainInfos(infos);
+  }
+
   return (
     <>
-    <GeneralForm />
+    <GeneralForm onValidation={handleMainInfosChange}/>
     <Result mainInfos={mainInfos}/>
     </>
   )
