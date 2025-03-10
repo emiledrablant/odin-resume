@@ -1,20 +1,22 @@
 
-import '../styles/result.css'
-
-
-function Result({mainInfos}) {
-    return(
-    <div id="container">
-        <div id="header">
-            <h1>{mainInfos.name}</h1>
-            <div id="general-infos">
-                <span>email: {mainInfos.email}</span>
-                <span>phone: {mainInfos.phone}</span>
-                <span>located in: {mainInfos.location}</span>
-            </div>
+function Result({ generalInfos, workExperience }) {
+    return (
+    <>
+        <div>
+            <p>{generalInfos.name}</p>
+            <p>{generalInfos.email}</p>
+            <p>{generalInfos.phone}</p>
+            <p>{generalInfos.location}</p>
         </div>
-    </div>
+        <div>
+            <h2>Work Section</h2>
+            {workExperience.map((exp) => (
+                <p key={exp.id}>{`${exp.name} - ${exp.title}`}</p>
+            ))}
+
+        </div>
+    </>
     )
 }
 
-export default Result
+export default Result;
