@@ -1,10 +1,12 @@
 
 import Input from "./Input";
 
-function WorkForm({data, handleWorkSection}) {
+function WorkForm({handleWorkSection, setIsFormOpen}) {
+    const data = {companyName: "", jobTitle: "",};
+    
     const onChange = function(event) {
-        console.log(event.target.dataKey) /* would like to use so the function could be used for each field */
-        console.log(event.target.value)
+        const element = event.target.dataset["key"];
+        data[element] = event.target.value;
     }
 
     return (
@@ -14,18 +16,17 @@ function WorkForm({data, handleWorkSection}) {
                 id="namecompany"
                 labelText="Company: "
                 data-key="companyName"
-                onChange={onChange}
-                /* onChange={(event) => data.companyName = event.target.value} */> 
+                onChange={onChange}>
             </Input>
             <Input
                 type="text"
                 id="title"
                 labelText="Occupation: "
-                data-key="title"
-                onChange={onChange}
-                /* onChange={(event) => data.jobTitle = event.target.value} */> 
+                data-key="jobTitle"
+                onChange={onChange}> 
             </Input>
-            <button>Confirm</button>
+            <button type="submit">Confirm</button>
+            <button type="reset" onClick={() => setIsFormOpen(false)}>Cancel</button>
         </form>
     )
 }

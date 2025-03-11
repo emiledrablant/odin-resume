@@ -1,10 +1,11 @@
-import React from "react";
+
 import WorkForm from "./WorkForm";
 
-function WorkSection({workExperience, handleWorkSection}) {
-    const [isFormOpen, setIsFormOpen] = React.useState(false);
-
-    const data = {companyName: "", jobTitle: "",};
+function WorkSection({workExperience, handleWorkSection, removeWorkExperience, isFormOpen, setIsFormOpen}) {
+    
+    function editWorkExperience(element) {
+        element.isOpen = true;
+    }
 
     return (
         <div>
@@ -17,11 +18,24 @@ function WorkSection({workExperience, handleWorkSection}) {
             )}
 
             {isFormOpen && (
-                <WorkForm data={data} handleWorkSection={handleWorkSection} />
+                <WorkForm handleWorkSection={handleWorkSection} setIsFormOpen={setIsFormOpen} />
             )}
 
-            {workExperience.map((exp) => (
-                <div key={exp.id}>{exp.name}</div>
+            {workExperience.map((element) => (
+
+                <div key={element.id}>
+                    {element.name}
+                    {" "}
+                    {!element.isOpen && (
+                        <button onClick={() => editWorkExperience(element)}>Edit</button>)
+                    }
+                    {" "}
+                    <button onClick={() => removeWorkExperience(element.id)}>Remove</button>
+                    {element.isOpen && (
+                        <WorkForm handleWorkSection={handleWorkSection} />
+                    )}
+                </div>
+                
             ))}
         </div>
     )

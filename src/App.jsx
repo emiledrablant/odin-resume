@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
 
 import GeneralSection from './components/GeneralSection';
@@ -13,13 +13,14 @@ const mockUser = {
 }
 
 const mockExp = [
-  {id: crypto.randomUUID(), name: "dummy data 1", title: "Chief Happiness Manager"},
-  {id: crypto.randomUUID(), name: "dummy data 2", title: "Senior Developer"},
+  {id: crypto.randomUUID(), isOpen: false, name: "dummy data 1", title: "Chief Happiness Manager"},
+  {id: crypto.randomUUID(), isOpen: false, name: "dummy data 2", title: "Senior Developer"},
 ];
 
 function App() {
-  const [generalInfos, setGeneralInfos] = useState(mockUser);
-  const [workExperience, setWorkExperience] = useState(mockExp);
+  const [generalInfos, setGeneralInfos] = React.useState(mockUser);
+  const [workExperience, setWorkExperience] = React.useState(mockExp);
+  const [isFormOpen, setIsFormOpen] = React.useState(false);
 
   function handleGeneralInfos(event) {
     const nextInfos = {
@@ -33,10 +34,21 @@ function App() {
     event.preventDefault();
     const nextData = {
       id: crypto.randomUUID(),
+      isOpen: false,
       name: data.companyName,
       title: data.jobTitle,
     }
     setWorkExperience([...workExperience, nextData]);
+    //setIsFormOpen(false);
+  }
+
+  function removeWorkExperience(id) {
+    const nextData = workExperience.filter((entry) => {
+      if (entry.id !== id) {
+        return entry;
+      }
+    });
+    setWorkExperience(nextData);
   }
 
   return (
@@ -48,6 +60,9 @@ function App() {
       <WorkSection
         workExperience={workExperience}
         handleWorkSection={handleWorkSection}
+        removeWorkExperience={removeWorkExperience}
+        isFormOpen={isFormOpen}
+        setIsFormOpen={setIsFormOpen}
       />
       <Result
         generalInfos={generalInfos}
