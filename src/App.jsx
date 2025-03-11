@@ -39,7 +39,19 @@ function App() {
       title: data.jobTitle,
     }
     setWorkExperience([...workExperience, nextData]);
-    //setIsFormOpen(false);
+    setIsFormOpen(false);
+  }
+
+  function editWorkExperience(element) {
+    const nextData = structuredClone(workExperience)
+    nextData.forEach((item) => {
+      if (item.id === element.id) {
+        item.isOpen = true;
+      } else {
+        item.isOpen = false;
+      }
+    })
+    setWorkExperience(nextData);
   }
 
   function removeWorkExperience(id) {
@@ -59,7 +71,8 @@ function App() {
       />
       <WorkSection
         workExperience={workExperience}
-        handleWorkSection={handleWorkSection}
+        handleWorkSection={handleWorkSection} // TODO: rename
+        editWorkExperience={editWorkExperience}
         removeWorkExperience={removeWorkExperience}
         isFormOpen={isFormOpen}
         setIsFormOpen={setIsFormOpen}

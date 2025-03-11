@@ -1,12 +1,14 @@
 
 import WorkForm from "./WorkForm";
 
-function WorkSection({workExperience, handleWorkSection, removeWorkExperience, isFormOpen, setIsFormOpen}) {
+function WorkSection({
+    workExperience,
+    handleWorkSection,
+    editWorkExperience,
+    removeWorkExperience,
+    isFormOpen,
+    setIsFormOpen}) {
     
-    function editWorkExperience(element) {
-        element.isOpen = true;
-    }
-
     return (
         <div>
             <h2>Work Section</h2>
@@ -27,7 +29,7 @@ function WorkSection({workExperience, handleWorkSection, removeWorkExperience, i
                     {element.name}
                     {" "}
                     {!element.isOpen && (
-                        <button onClick={() => editWorkExperience(element)}>Edit</button>)
+                        <button onClick={() => editWorkExperience(element)}>Edit {element.name}</button>)
                     }
                     {" "}
                     <button onClick={() => removeWorkExperience(element.id)}>Remove</button>
