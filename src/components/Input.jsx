@@ -5,6 +5,7 @@ function Input({
     labelText,
     placeholder,
     onChange,
+    defaultValue,
     "data-key": dataKey
 }) {
     let Element;
@@ -29,6 +30,7 @@ function Input({
                 data-key={dataKey}
                 placeholder={placeholder}
                 onChange={onChange}
+                defaultValue={defaultValue}
                 autoComplete="off"
             >
             </Element>

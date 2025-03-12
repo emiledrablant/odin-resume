@@ -1,5 +1,10 @@
 
-function Result({ generalInfos, workExperience }) {
+import React from "react";
+import { DataContext } from "../App";
+
+function Result() {
+    const { generalInfos, workExperience} = React.useContext(DataContext);
+
     return (
     <>
         <div>

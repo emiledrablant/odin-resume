@@ -5,21 +5,24 @@ import GeneralSection from './components/GeneralSection';
 import WorkSection from './components/WorkSection';
 import Result from './components/Result';
 
+export const DataContext = React.createContext();
+
 const mockUser = {
-  name:"Chris Hadfield",
-  email:"chrishadfied@nasa.com",
-  phone:"+32 788 411 255",
-  location:"Ontario, Canada",
+  general: {
+    name:"Chris Hadfield",
+    email:"chrishadfied@nasa.com",
+    phone:"+32 788 411 255",
+    location:"Ontario, Canada",
+  },
+  experience: [
+    {id: crypto.randomUUID(), isOpen: false, name: "dummy data 1", title: "Chief Happiness Manager"},
+    {id: crypto.randomUUID(), isOpen: false, name: "dummy data 2", title: "Senior Developer"},
+  ],
 }
 
-const mockExp = [
-  {id: crypto.randomUUID(), isOpen: false, name: "dummy data 1", title: "Chief Happiness Manager"},
-  {id: crypto.randomUUID(), isOpen: false, name: "dummy data 2", title: "Senior Developer"},
-];
-
 function App() {
-  const [generalInfos, setGeneralInfos] = React.useState(mockUser);
-  const [workExperience, setWorkExperience] = React.useState(mockExp);
+  const [generalInfos, setGeneralInfos] = React.useState(mockUser.general);
+  const [workExperience, setWorkExperience] = React.useState(mockUser.experience);
   const [isFormOpen, setIsFormOpen] = React.useState(false);
 
   function handleGeneralInfos(event) {
@@ -64,7 +67,7 @@ function App() {
   }
 
   return (
-    <>
+    <DataContext value={{generalInfos, setGeneralInfos, workExperience, setWorkExperience}}>
       <GeneralSection
         generalInfos={generalInfos}
         onChange={handleGeneralInfos}
@@ -81,7 +84,7 @@ function App() {
         generalInfos={generalInfos}
         workExperience={workExperience}
       />
-    </>
+    </DataContext>
   )
 }
 

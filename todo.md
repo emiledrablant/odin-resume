@@ -1,0 +1,4 @@
+- correctly wire confirm button in form
+- correctly wire cancel button
+- edit mode doesn't add a new experience but modify the existing one
+- add basic styling to see if it works

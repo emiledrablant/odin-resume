@@ -1,9 +1,13 @@
 
 import Input from "./Input";
 
-function WorkForm({handleWorkSection, setIsFormOpen}) {
-    const data = {companyName: "", jobTitle: "",};
-    
+function WorkForm({dataToEdit, handleWorkSection, setIsFormOpen}) {
+    let data = {companyName: "", jobTitle: ""};
+    if (dataToEdit !== undefined) {
+        data.companyName = dataToEdit.name;
+        data.jobTitle = dataToEdit.title;
+    }
+
     const onChange = function(event) {
         const element = event.target.dataset["key"];
         data[element] = event.target.value;
@@ -16,6 +20,7 @@ function WorkForm({handleWorkSection, setIsFormOpen}) {
                 id="namecompany"
                 labelText="Company: "
                 data-key="companyName"
+                defaultValue={data.companyName}
                 onChange={onChange}>
             </Input>
             <Input
@@ -23,6 +28,7 @@ function WorkForm({handleWorkSection, setIsFormOpen}) {
                 id="title"
                 labelText="Occupation: "
                 data-key="jobTitle"
+                defaultValue={data.jobTitle}
                 onChange={onChange}> 
             </Input>
             <button type="submit">Confirm</button>

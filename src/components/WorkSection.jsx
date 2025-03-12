@@ -29,12 +29,12 @@ function WorkSection({
                     {element.name}
                     {" "}
                     {!element.isOpen && (
-                        <button onClick={() => editWorkExperience(element)}>Edit {element.name}</button>)
+                        <button onClick={() => editWorkExperience(element)}>Edit</button>)
                     }
                     {" "}
                     <button onClick={() => removeWorkExperience(element.id)}>Remove</button>
                     {element.isOpen && (
-                        <WorkForm handleWorkSection={handleWorkSection} />
+                        <WorkForm dataToEdit={element} handleWorkSection={handleWorkSection} />
                     )}
                 </div>
                 
