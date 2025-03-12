@@ -1,12 +1,16 @@
-
+import React from "react";
 import Input from "./Input";
 
-function WorkForm({dataToEdit, handleWorkSection, setIsFormOpen}) {
+import { DataContext } from "../App";
+
+function WorkForm({dataToEdit, handleWorkSection}) {
     let data = {companyName: "", jobTitle: ""};
     if (dataToEdit !== undefined) {
         data.companyName = dataToEdit.name;
         data.jobTitle = dataToEdit.title;
     }
+
+    const {closeAllForms} = React.useContext(DataContext);
 
     const onChange = function(event) {
         const element = event.target.dataset["key"];
@@ -32,7 +36,7 @@ function WorkForm({dataToEdit, handleWorkSection, setIsFormOpen}) {
                 onChange={onChange}> 
             </Input>
             <button type="submit">Confirm</button>
-            <button type="reset" onClick={() => setIsFormOpen(false)}>Cancel</button>
+            <button type="reset" onClick={() => closeAllForms()}>Cancel</button>
         </form>
     )
 }

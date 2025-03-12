@@ -1,26 +1,33 @@
+import React from "react";
 
 import WorkForm from "./WorkForm";
+import { DataContext } from "../App";
 
 function WorkSection({
-    workExperience,
     handleWorkSection,
-    editWorkExperience,
+    handleEditState,
     removeWorkExperience,
     isFormOpen,
     setIsFormOpen}) {
     
+    const {workExperience} = React.useContext(DataContext);
+
     return (
         <div>
             <h2>Work Section</h2>
 
             {!isFormOpen && (
-                <button onClick={() =>{setIsFormOpen(!isFormOpen)}}>
+                <button onClick={() => {
+                    setIsFormOpen(!isFormOpen);
+                }}>
                     Add a work experience
                 </button>
             )}
 
             {isFormOpen && (
-                <WorkForm handleWorkSection={handleWorkSection} setIsFormOpen={setIsFormOpen} />
+                <WorkForm
+                    handleWorkSection={handleWorkSection}
+                />
             )}
 
             {workExperience.map((element) => (
@@ -29,12 +36,15 @@ function WorkSection({
                     {element.name}
                     {" "}
                     {!element.isOpen && (
-                        <button onClick={() => editWorkExperience(element)}>Edit</button>)
+                        <button onClick={() => handleEditState(element)}>Edit</button>)
                     }
                     {" "}
                     <button onClick={() => removeWorkExperience(element.id)}>Remove</button>
                     {element.isOpen && (
-                        <WorkForm dataToEdit={element} handleWorkSection={handleWorkSection} />
+                        <WorkForm
+                            dataToEdit={element}
+                            handleWorkSection={handleWorkSection}
+                        />
                     )}
                 </div>
                 

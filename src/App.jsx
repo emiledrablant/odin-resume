@@ -45,7 +45,16 @@ function App() {
     setIsFormOpen(false);
   }
 
-  function editWorkExperience(element) {
+  function closeAllForms() {
+    const nextData = structuredClone(workExperience)
+    nextData.forEach((item) => {
+        item.isOpen = false;
+    })
+    setWorkExperience(nextData);
+    setIsFormOpen(false);
+  }
+
+  function handleEditState(element) {
     const nextData = structuredClone(workExperience)
     nextData.forEach((item) => {
       if (item.id === element.id) {
@@ -67,7 +76,7 @@ function App() {
   }
 
   return (
-    <DataContext value={{generalInfos, setGeneralInfos, workExperience, setWorkExperience}}>
+    <DataContext value={{generalInfos, setGeneralInfos, workExperience, setWorkExperience, closeAllForms}}>
       <GeneralSection
         generalInfos={generalInfos}
         onChange={handleGeneralInfos}
@@ -75,7 +84,7 @@ function App() {
       <WorkSection
         workExperience={workExperience}
         handleWorkSection={handleWorkSection} // TODO: rename
-        editWorkExperience={editWorkExperience}
+        handleEditState={handleEditState}
         removeWorkExperience={removeWorkExperience}
         isFormOpen={isFormOpen}
         setIsFormOpen={setIsFormOpen}
