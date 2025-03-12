@@ -8,6 +8,7 @@ function WorkForm({dataToEdit, handleWorkSection}) {
     if (dataToEdit !== undefined) {
         data.companyName = dataToEdit.name;
         data.jobTitle = dataToEdit.title;
+        data.id = dataToEdit.id;
     }
 
     const {closeAllForms} = React.useContext(DataContext);

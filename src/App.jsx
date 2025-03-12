@@ -35,18 +35,31 @@ function App() {
 
   function handleWorkSection(event, data) {
     event.preventDefault();
-    const nextData = {
-      id: crypto.randomUUID(),
-      isOpen: false,
-      name: data.companyName,
-      title: data.jobTitle,
+    let nextData = structuredClone(workExperience);
+    if (data.id !== undefined) {
+      nextData.forEach((item) => {
+        if (item.id === data.id) {
+          item.name = data.companyName;
+          item.title = data.jobTitle;
+          item.isOpen = false;
+        }
+      })
+      setWorkExperience(nextData);
+    } else {
+      const newItem = {
+        id: crypto.randomUUID(),
+        isOpen: false,
+        name: data.companyName,
+        title: data.jobTitle,
+      }
+      setWorkExperience([...workExperience, newItem]);
     }
-    setWorkExperience([...workExperience, nextData]);
+
     setIsFormOpen(false);
   }
 
   function closeAllForms() {
-    const nextData = structuredClone(workExperience)
+    const nextData = structuredClone(workExperience);
     nextData.forEach((item) => {
         item.isOpen = false;
     })
@@ -55,7 +68,7 @@ function App() {
   }
 
   function handleEditState(element) {
-    const nextData = structuredClone(workExperience)
+    const nextData = structuredClone(workExperience);
     nextData.forEach((item) => {
       if (item.id === element.id) {
         item.isOpen = true;
